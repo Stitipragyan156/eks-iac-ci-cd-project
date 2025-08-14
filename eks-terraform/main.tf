@@ -126,7 +126,7 @@ data "aws_subnet" "public-subnet1" {
 }
 
 data "aws_subnet" "public-subnet2" {
- vpc_id = data.aws_vpc.main.id
+ vpc_id = data.aws_vpc.newvpc.id
  filter {
     name = "tag:Name"
     values = ["public-subnet2"]
