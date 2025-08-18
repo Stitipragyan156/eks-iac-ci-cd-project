@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: prod
+spec:
+  replicas: 4   # Production runs multiple replicas for HA
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp-container
+          image: 454331167189.dkr.ecr.us-east-1.amazonaws.com/eks-iac-ci-cd-project:latest
+          ports:
+            - containerPort: 81
+          env:
+            - name: ENV
+              value: "prod"
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
