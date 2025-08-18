@@ -18,7 +18,7 @@ spec:
       - name: frontend
         image: 454331167189.dkr.ecr.us-east-1.amazonaws.com/ecr-repo-for-eks-ci/cd-project
         ports:
-        - containerPort: 80
+        - containerPort: 81
       #  env:   # <-- Fixed indentation
        # - name: REACT_APP_API_BASE_URL
         #  value: "http://ad2084f73b7e34376bd49ec0ea55a8bb-2099085754.us-east-1.elb.amazonaws.com"
@@ -30,8 +30,8 @@ metadata:
   name: frontend
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+  - port: 81
+    targetPort: 81
     protocol: TCP
       #    nodePort: 31004  # Optional: Specify a nodePort if you want a fixed port
   selector:
