@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  namespace: qa
+spec:
+  replicas: 2   # QA runs with more replicas for testing stability
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp-container
+          image: 454331167189.dkr.ecr.us-east-1.amazonaws.com/eks-iac-ci-cd-project:latest
+          ports:
+            - containerPort: 81
+          env:
+            - name: ENV
+              value: "qa"
