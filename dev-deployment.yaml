@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp-deployment
+  name: eks-iac-ci-cd-project
   namespace: dev
 spec:
   replicas: 1   # Dev usually runs single replica to save cost
   selector:
     matchLabels:
-      app: myapp
+      app: eks-iac-ci-cd-project
   template:
     metadata:
       labels:
-        app: myapp
+        app: eks-iac-ci-cd-project
     spec:
       containers:
-        - name: myapp-container
+        - name: eks-iac-ci-cd-project-container
           image: 454331167189.dkr.ecr.us-east-1.amazonaws.com/eks-iac-ci-cd-project:latest
           ports:
             - containerPort: 81
