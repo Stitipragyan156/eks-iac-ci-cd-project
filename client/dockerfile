@@ -23,5 +23,5 @@ COPY --from=build /workspace/app/target/*.jar app.jar
 RUN useradd -ms /bin/bash spring && chown -R spring:spring /app
 USER spring
 
-EXPOSE 8080
+EXPOSE 81
 ENTRYPOINT ["java", "-jar", "app.jar"]
