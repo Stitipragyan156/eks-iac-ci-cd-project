@@ -101,4 +101,22 @@ pipeline {
             }
         }
     }
+  post {
+    success {
+        mail to: 'stitipragyan715@gmail.com',
+             subject: "SUCCESS: Pipeline for main",
+             body: "Pipeline execution successful for branch main"
+    }
+    failure {
+        script {
+            sh """
+              aws sns publish --topic-arn ${SNS_TOPIC_ARN} --message "Pipeline failed for branch main" --region ${AWS_REGION}
+            """
+        }
+        mail to: 'stitipragyan715@gmail.com',
+             subject: "FAILED: Pipeline for main",
+             body: "Pipeline failed for branch main. Please check Jenkins logs."
+    }
+}
+
 }
